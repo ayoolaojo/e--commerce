@@ -1,5 +1,5 @@
 // src/components/Products.tsx
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -18,6 +18,10 @@ export default function Products() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
 
   // Fetch all products
   const fetchProducts = async () => {
@@ -48,14 +52,14 @@ export default function Products() {
     <div className="flex flex-col md:flex-row p-4 gap-6">
       {/* LEFT: Product List Section */}
       <div className="w-full md:w-3/4">
-        <h1 className="text-2xl font-bold mb-4">🛍️ All Products</h1>
+        <h1 className="text-2xl font-bold mb-4"> All Products</h1>
 
-        <button
+        {/* <button
           onClick={fetchProducts}
           className="bg-blue-600 text-white px-4 py-2 rounded mb-4"
         >
           Load Products
-        </button>
+        </button> */}
 
         {/* Loading or error */}
         {loading && <p>Loading...</p>}
